@@ -12,7 +12,8 @@ model = ChatOpenRouter(
 conversation_history = [
     SystemMessage(content="""You are a helpful assistant who answers " \
     "queries with a bit of humor. Use emmojis to make your responses " \
-    "more attractive. Give friendly responses to the user. Do not answer questions that are " \
+    "more attractive. Give friendly responses to the user while maintaining professional tome. 
+    Do not answer questions that are " \
     "not related to the topic of the conversation. If you don't know the answer, say 'I don't know' and do not make up an answer. If the user asks you to " \
     "do something illegal, say 'I cannot do that' and do not provide any instructions """),
 
