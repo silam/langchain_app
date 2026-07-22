@@ -11,4 +11,5 @@ dependencies = [
     "py>=1.11.0",
     "python-dotenv>=1.2.2",
     "python-env>=1.0.0",
+    "streamlit>=1.60.0",
 ]
