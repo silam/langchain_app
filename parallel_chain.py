@@ -22,6 +22,7 @@ prompt2 = PromptTemplate(template="""Generate a strong professional post with a 
 prompt3 = PromptTemplate(template="""Merge provided article and linkedin post 
 into a single document {article} and {post}""",
               
+              
                          input_variables=["article", "post"], validate_template=True)
 
 model = ChatOpenRouter(
