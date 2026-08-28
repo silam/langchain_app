@@ -1,19 +1,19 @@
 from fastapi import FastAPI
+from openai import OpenAI
 from pydantic import BaseModel
-from groq import Groq
 from dotenv import load_dotenv
 from fastapi.responses import StreamingResponse
 import os
-from langchain_openrouter import ChatOpenRouter
-
-
-from streamlit import status
 
 load_dotenv(override=True)
 
 app = FastAPI()
 
-client = ChatOpenRouter(api_key=os.getenv("OPENROUTER_API_KEY"))    
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY is missing")
+
+client = OpenAI(api_key=api_key)
 
 
 
@@ -28,11 +28,11 @@ class PromptResponse(BaseModel):
 
 def stream_response(message: str):
     stream = client.chat.completions.create(
-        model = "llama-3.3-70b-versatile",
-        messages = [
-          {"role": "user", "content": message}],
-          stream = True
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": message}],
+        stream=True,
     )
+
     for chunk in stream:
         content = chunk.choices[0].delta.content
         if content:

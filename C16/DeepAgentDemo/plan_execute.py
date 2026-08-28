@@ -103,6 +103,13 @@ def execute(payload: dict) -> State:
             "description": step["description"]
         })
 
+        if str(decision).strip().lower() not in ("yes","approve", "y", "true"):
+            return {"skipped": {step["id"]: step["description"]}}
+
+    result = run_step(step["description"], context)
+    return {"results": {step["id"]: result}}    
+
+
 
 
 
